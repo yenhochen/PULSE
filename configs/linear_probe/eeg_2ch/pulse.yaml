@@ -1,0 +1,28 @@
+# PULSE linear-probe — Sleep EEG (2 channels, healthy subjects)
+base_config: configs/base/pulse_base.yaml
+
+data_args:
+  path: data/sleep_eeg/processed/healthy
+  mode: fullts
+  input_dims: 2
+  subseq_size: 1000
+  train_stride: 350
+  val_stride: 1000
+  downsample_factor: 3
+  p_train: 0.5
+  p_val: 0.5
+
+model_args:
+  time_vary_args:
+    pool_denom: 2
+    tv_dim: 2
+  init_args:
+    in_proj_dilation: 2
+  augmentation_args:
+    n_init_samples: 1
+    sample_right_boundary: 500
+
+training_args:
+  batch_size: 64
+  eval_batch_size: 64
+  save_every_n: 100

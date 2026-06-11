@@ -1,0 +1,30 @@
+# Synthetic analysis — PULSE (100-step windows; data path set at runtime via -p)
+base_config: configs/base/pulse_base.yaml
+
+data_args:
+  path: null
+  mode: fullts
+  input_dims: 3
+  subseq_size: 100
+  train_stride: 50
+  val_stride: 100
+  analysis_args:
+    n_classes: 5
+
+model_args:
+  time_vary_args:
+    pool_denom: 50
+  recon_args:
+    num_layers: 3
+    hidden_dim: 128
+  init_args:
+    in_proj_dilation: 2
+    hidden_dim: 128
+  augmentation_args:
+    n_init_samples: 3
+    sample_right_boundary: 50
+
+training_args:
+  batch_size: 128
+  eval_batch_size: 128
+  save_every_n: 100

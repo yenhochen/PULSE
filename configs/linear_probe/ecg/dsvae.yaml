@@ -1,0 +1,12 @@
+base_config: configs/base/dsvae_base.yaml
+model_type: dsvae
+
+data_args:
+  path: data/ecg/processed
+  mode: fullts
+  input_dims: 2
+  subseq_size: 500
+  train_stride: 500
+  val_stride: 500
+  downsample_factor: 5
+  p_val: 0.1

@@ -1,0 +1,16 @@
+base_config: configs/base/lfads_base.yaml
+model_type: lfads
+data_args:
+  path: data/ecg/processed
+  mode: subseq
+  input_dims: 2
+  subseq_size: 500
+  downsample_factor: 5
+  p_train: 0.25
+  p_val: 0.1
+
+training_args:
+  batch_size: 128
+  epochs: 10
+  eval_every_n: 2
+  lr: 0.001

@@ -1,0 +1,19 @@
+base_config: configs/base/lfads_base.yaml
+model_type: lfads
+
+data_args:
+  path: null
+  analysis_args:
+    n_classes: 5
+  mode: subseq
+  input_dims: 3
+  subseq_size: 100
+  train_stride: 100
+  val_stride: 100
+
+training_args:
+  epochs: 100
+  batch_size: 128
+  eval_batch_size: 128
+  lr: 0.001
+  save_every_n: 100

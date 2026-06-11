@@ -1,0 +1,12 @@
+# PULSE oracle defaults (trainers/pulse_oracle.py)
+#   combine_inputs: concat paired same-class windows along channel dim for encoder input
+#   sample_init:    randomize init-window start index during training
+#   dropout_rate:   Dropout1d on input channels (0 to disable)
+
+base_config: configs/base/pulse_base.yaml
+model_type: pulse_oracle
+
+model_args:
+  combine_inputs: false
+  sample_init: false
+  dropout_rate: 0.0

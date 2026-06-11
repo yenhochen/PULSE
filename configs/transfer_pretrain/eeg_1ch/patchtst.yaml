@@ -1,0 +1,22 @@
+# PatchTST transfer source pretraining — Sleep EEG (1 channel)
+base_config: configs/base/patchtst_base.yaml
+
+eval_args:
+  do_eval: false
+
+data_args:
+  path: data/sleep_eeg/processed/healthy
+  mode: fullts
+  input_dims: 1
+  subseq_size: 200
+  train_stride: 200
+  val_stride: 200
+  include_channels: [0]
+  p_train: 0.1
+  p_val: 0.1
+
+model_args:
+  d_model: 320
+
+training_args:
+  lr: 0.0001

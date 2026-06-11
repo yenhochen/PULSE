@@ -1,0 +1,28 @@
+# PULSE linear-probe — ECG (2-channel atrial fibrillation detection)
+base_config: configs/base/pulse_base.yaml
+
+data_args:
+  path: data/ecg/processed
+  mode: subseq
+  input_dims: 2
+  subseq_size: 500
+  train_stride: 250
+  val_stride: 250
+  downsample_factor: 5
+  p_train: 0.5
+  p_val: 0.5
+
+model_args:
+  time_vary_args:
+    pool_denom: 100
+  init_args:
+    in_proj_kernel_size: 11
+    in_proj_dilation: 2
+    hidden_dim: 128
+  augmentation_args:
+    sample_right_boundary: 250
+
+training_args:
+  batch_size: 64
+  eval_batch_size: 64
+  save_every_n: 100

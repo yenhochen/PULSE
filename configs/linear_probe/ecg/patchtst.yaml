@@ -1,0 +1,17 @@
+# PatchTST linear-probe — ECG
+base_config: configs/base/patchtst_base.yaml
+
+data_args:
+  path: data/ecg/processed
+  mode: fullts
+  input_dims: 2
+  subseq_size: 500
+  downsample_factor: 5
+  p_train: 0.25
+  p_val: 0.1
+
+model_args:
+  d_model: 128
+
+training_args:
+  lr: 0.0001

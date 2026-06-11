@@ -1,0 +1,23 @@
+base_config: configs/base/base.yaml
+model_type: ts2vec
+
+data_args:
+  path: data/sleep_eeg/processed/healthy
+  mode: fullts
+  input_dims: 2
+  subseq_size: 1000
+  train_stride: 250
+  val_stride: 1000
+  downsample_factor: 3
+  p_train: 0.2
+  p_val: 0.2
+
+model_args:
+  temporal_unit: 0
+
+training_args:
+  epochs: 100
+  batch_size: 64
+  eval_batch_size: 64
+  lr: 0.00001
+  save_every_n: 100

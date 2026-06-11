@@ -1,0 +1,28 @@
+save_dir: null
+seed: 1234
+# device: cuda:0
+sde_args:
+  dynamics_fn: lorenz
+  dynamics_args:
+    sigma: 10
+    beta: 8/3
+    rho: 28
+  diffusion_fn: isotropic
+  diffusion_args:
+    state_size: 3
+    sigma: 0
+  speed: 16
+  gamma: 1
+generate_args:
+  dt: 0.001
+  n_samples_per_system: 20
+  burn_in: 200
+  t_size: 10000
+  t_end: 12
+  z_score: True
+val_size: 0.15
+test_size: 0.15
+sweep_key: sde_args/dynamics_args/rho
+sweep_values: [28, 41, 55, 69, 83, 96, 110, 124, 138, 152]
+speed_start: 16
+speed_end: 8

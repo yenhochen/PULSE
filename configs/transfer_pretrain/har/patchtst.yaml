@@ -1,0 +1,18 @@
+# PatchTST transfer source pretraining — HAR
+base_config: configs/base/patchtst_base.yaml
+
+eval_args:
+  do_eval: false
+
+data_args:
+  path: data/har/processed
+  mode: fullts
+  input_dims: 6
+  subseq_size: 500
+  downsample_factor: 1
+  include_channels: all
+  train_stride: 128
+  val_stride: 128
+
+training_args:
+  lr: 0.00001

@@ -1,0 +1,19 @@
+# PatchTST linear-probe — Sleep EEG (2 channels)
+base_config: configs/base/patchtst_base.yaml
+
+data_args:
+  path: data/sleep_eeg/processed/healthy
+  mode: fullts
+  input_dims: 2
+  subseq_size: 1000
+  train_stride: 250
+  val_stride: 1000
+  downsample_factor: 3
+  p_train: 0.1
+  p_val: 0.1
+
+model_args:
+  d_model: 320
+
+training_args:
+  lr: 0.0001

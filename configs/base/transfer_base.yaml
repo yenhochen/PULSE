@@ -1,0 +1,14 @@
+# =============================================================================
+# Transfer learning defaults (trainers/transfer.py, scripts/run/transfer.py)
+# Merge order: experiment yaml -> transfer_base.yaml -> base.yaml
+#
+# data_args.num_classes:  target classification head output size
+# training_args.freeze_backbone_epochs: epochs with frozen encoder (0 = train heads only)
+# =============================================================================
+
+base_config: configs/base/base.yaml
+model_type: transfer
+
+training_args:
+  freeze_backbone_epochs: 10
+  weight_decay: 0.001

@@ -1,0 +1,8 @@
+base_config: configs/base/dsvae_base.yaml
+model_type: dsvae
+
+data_args:
+  path: data/har/processed
+  mode: fullts
+  train_stride: 128
+  val_stride: 128

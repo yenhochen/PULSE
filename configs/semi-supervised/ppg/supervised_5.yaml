@@ -1,0 +1,22 @@
+base_config: configs/base/base.yaml
+model_type: supervised
+model_name: supervised_5
+
+data_args:
+  path: data/ppg/processed
+  mode: subseq
+  input_dims: 1
+  subseq_size: 960
+  train_stride: 480
+  val_stride: 480
+  downsample_factor: 4
+  num_classes: 4
+  p_train: 0.05
+  p_val: 1
+
+training_args:
+  epochs: 100
+  batch_size: 64
+  eval_batch_size: 64
+  lr: 0.001
+  save_every_n: 100

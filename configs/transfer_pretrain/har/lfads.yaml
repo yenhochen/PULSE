@@ -1,0 +1,11 @@
+model_type: lfads
+base_config: configs/base/transfer_pretrain_base.yaml
+data_args:
+  path: data/har/processed
+  mode: fullts
+  input_dims: 6
+  subseq_size: 500
+  downsample_factor: 1
+  include_channels: all
+  train_stride: 128
+  val_stride: 128

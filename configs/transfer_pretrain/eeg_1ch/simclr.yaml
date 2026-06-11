@@ -1,0 +1,23 @@
+base_config: configs/base/transfer_pretrain_base.yaml
+model_type: simclr
+
+data_args:
+  path: data/sleep_eeg/processed/healthy
+  mode: fullts
+  input_dims: 1
+  subseq_size: 200
+  train_stride: 200
+  val_stride: 200
+  include_channels: [0]
+  p_train: 0.1
+  p_val: 0.1
+
+model_args:
+  tau: 1
+
+training_args:
+  epochs: 100
+  batch_size: 64
+  eval_batch_size: 64
+  lr: 0.001
+  save_every_n: 100

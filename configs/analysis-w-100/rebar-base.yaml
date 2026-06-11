@@ -1,0 +1,30 @@
+base_config: configs/base/base.yaml
+model_type: rebar
+
+data_args:
+  path: null
+  analysis_args:
+    n_classes: 5
+  mode: fullts
+  input_dims: 3
+  subseq_size: 100
+  train_stride: 100
+  val_stride: 100
+
+model_args:
+  candidateset_size: 10
+  tau: 0.001
+  alpha: 0.5
+  double_receptivefield: 5
+  mask_extended: 25
+  rebarcrossattn_batch_size: 32
+  rebarcrossattn_epochs: 100
+  rebarcrossattn_save_epochfreq: 20
+  rebarcrossattn_retrain: false
+
+training_args:
+  epochs: 100
+  batch_size: 128
+  eval_batch_size: 128
+  lr: 0.001
+  save_every_n: 100

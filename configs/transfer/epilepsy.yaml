@@ -1,0 +1,19 @@
+base_config: configs/base/transfer_base.yaml
+model_type: transfer
+
+data_args:
+  path: data/epilepsy/processed
+  input_dims: 1
+  subseq_size: 178
+  p_train: 1
+  p_val: 1
+  num_classes: 2
+
+training_args:
+  freeze_backbone_epochs: 0
+  epochs: 40
+  batch_size: 30
+  weight_decay: 0.00001
+  eval_batch_size: 20
+  lr: 0.0003
+  save_every_n: 500

@@ -1,0 +1,27 @@
+save_dir: null
+seed: 1234
+sde_args:
+  dynamics_fn: rossler
+  dynamics_args:
+    a: 0.1
+    b: 0.1
+    c: 5
+  diffusion_fn: isotropic
+  diffusion_args:
+    state_size: 3
+    sigma: 5
+  speed: 32
+  gamma: 1
+generate_args:
+  dt: 0.001
+  n_samples_per_system: 20
+  burn_in: 200
+  t_size: 10000
+  t_end: 10
+  z_score: True
+val_size: 0.15
+test_size: 0.15
+sweep_key: sde_args/dynamics_args/c
+sweep_values: [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35]
+speed_start: 32
+speed_end: 32

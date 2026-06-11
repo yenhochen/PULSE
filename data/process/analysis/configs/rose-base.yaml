@@ -1,0 +1,25 @@
+save_dir: null
+seed: 1234
+sde_args:
+  dynamics_fn: hindmarsh-rose
+  dynamics_args:
+    I: 0.1
+  diffusion_fn: isotropic
+  diffusion_args:
+    state_size: 3
+    sigma: 5
+  speed: 32
+  gamma: 5
+generate_args:
+  dt: 0.001
+  n_samples_per_system: 20
+  burn_in: 200
+  t_size: 10000
+  t_end: 40
+  z_score: True
+val_size: 0.15
+test_size: 0.15
+sweep_key: sde_args/dynamics_args/I
+sweep_values: [1, 1.33, 1.66, 2, 2.33, 2.66, 3, 3.33, 3.66, 4]
+speed_start: 32
+speed_end: 32

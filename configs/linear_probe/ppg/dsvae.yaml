@@ -1,0 +1,9 @@
+base_config: configs/base/dsvae_base.yaml
+model_type: dsvae
+
+data_args:
+  path: data/ppg/processed
+  mode: subseq
+  input_dims: 1
+  subseq_size: 960
+  downsample_factor: 4

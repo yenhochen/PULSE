@@ -1,0 +1,13 @@
+# PatchTST linear-probe — HAR
+base_config: configs/base/patchtst_base.yaml
+
+data_args:
+  path: data/har/processed
+  mode: fullts
+  input_dims: 6
+  subseq_size: 128
+  train_stride: 128
+  val_stride: 128
+
+training_args:
+  lr: 0.00001

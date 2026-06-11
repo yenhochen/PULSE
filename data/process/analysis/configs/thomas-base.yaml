@@ -1,0 +1,25 @@
+save_dir: null
+seed: 1234
+sde_args:
+  dynamics_fn: thomas
+  dynamics_args:
+    b: 0.1
+  diffusion_fn: isotropic
+  diffusion_args:
+    state_size: 3
+    sigma: 0
+  speed: 128
+  gamma: 8
+generate_args:
+  dt: 0.001
+  n_samples_per_system: 20
+  burn_in: 200
+  t_size: 10000
+  t_end: 20
+  z_score: True
+val_size: 0.15
+test_size: 0.15
+sweep_key: sde_args/dynamics_args/b
+sweep_values: [ 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2, 0.225, 0.25]
+speed_start: 128
+speed_end: 128

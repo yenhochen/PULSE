@@ -1,0 +1,11 @@
+base_config: configs/analysis-w-100/pulse_oracle-base.yaml
+model_name: pulse_oracle_negative
+
+data_args:
+  input_dims: 6
+  mode: subseq
+
+model_args:
+  combine_inputs: true
+  sample_init: true
+  dropout_rate: 0.25

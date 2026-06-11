@@ -1,0 +1,46 @@
+# =============================================================================
+# PULSE model defaults (trainers/pulse.py, pulse/*)
+# Merge order: experiment yaml -> pulse_base.yaml -> base.yaml
+#
+# model_args.time_vary_args  (pulse/timeVarying.py)
+#   include:      enable time-varying latent concatenated into recon inputs
+#   pool_denom:   approximate temporal compression factor for dtv (need not divide subseq_size)
+#   tv_dim:       channels of time-varying signal per timestep
+#
+# model_args.recon_args  (pulse/reconstruct.py)
+#   num_layers:   GRU depth in reconstruction network
+#   hidden_dim:   GRU hidden size and MLP width
+#
+# model_args.init_args  (pulse/initialCondition.py)
+#   in_proj_kernel_size:  conv kernel on input window for init-condition encoder
+#   in_proj_dilation:     dilation of init-condition conv
+#   hidden_dim:           conv width before projecting to GRU initial state h0
+#
+# model_args.augmentation_args  (pulse/augment.py, trainers/pulse.py)
+#   n_init_samples:         extra stochastic init samples per batch (0 to disable)
+#   sample_right_boundary:  max random start index when sampling init window
+#
+# model_args.shared_f_init:  init encoder reads encoder output instead of raw x
+# =============================================================================
+
+base_config: configs/base/base.yaml
+model_type: pulse
+
+model_args:
+  time_vary_args:
+    include: true
+    pool_denom: 1
+    tv_dim: 1
+
+  recon_args:
+    num_layers: 2
+    hidden_dim: 64
+
+  init_args:
+    in_proj_kernel_size: 3
+    in_proj_dilation: 1
+    hidden_dim: 64
+
+  augmentation_args:
+    n_init_samples: 2
+    sample_right_boundary: 64

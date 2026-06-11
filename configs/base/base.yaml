@@ -1,0 +1,57 @@
+# =============================================================================
+# Shared experiment defaults for all models (PULSE and baselines).
+# Merge order: leaf yaml -> ... -> base.yaml (leaf wins on conflict)
+#
+# data_args.mode:
+#   subseq  - fixed-length windows (most SSL baselines)
+#   fullts  - sliding windows over full time series (PULSE on HAR/EEG)
+# data_args.p_train / p_val: fraction of train/val windows to subsample
+# save_dir: null -> auto path experiments/{dataset}/{model}/seed_{N} (override with -sd)
+# =============================================================================
+
+model_type: null
+device: cuda:0
+save_dir: null
+model_name: null
+seed: 1234
+max_threads: 4
+load_from_checkpoint: null
+
+model_args:
+  shared_f_init: false
+
+data_args:
+  path: data/har/processed
+  mode: subseq
+  input_dims: 6
+  subseq_size: 128
+  downsample_factor: 1
+  include_channels: all
+  p_train: 1
+  p_val: 1
+  train_stride: 128
+  val_stride: 128
+
+training_args:
+  epochs: 100
+  lr: 0.001
+  batch_size: 32
+  eval_batch_size: 32
+  standardize_batch: false
+  eval_every_n: 2
+  log_every_n: 2
+  save_every_n: 500
+
+encoder_args:
+  norm_last_layer: true
+  num_layers: 10
+  emb_dim: 320
+  hidden_dim: 64
+  pool_across_time_mode: max
+
+transfer: false
+
+eval_args:
+  do_eval: true
+  eval_n_seeds: 5
+  plot_tsne_alpha: 0.1

@@ -1,0 +1,29 @@
+# =============================================================================
+# PatchTST defaults (trainers/patchtst.py, Hugging Face PatchTSTConfig)
+# Merge order: experiment yaml -> patchtst_base.yaml -> base.yaml
+#
+# model_args  (passed to PatchTSTConfig)
+#   patch_length:       patch size along time axis
+#   stride:             patch stride (alias for patch_stride)
+#   mask_type:          masking strategy during pretraining
+#   random_mask_ratio:  fraction of patches masked when mask_type=random
+#   use_cls_token:      prepend CLS token per patch for downstream embedding
+#   d_model:            transformer hidden size
+# =============================================================================
+
+base_config: configs/base/base.yaml
+model_type: patchtst
+
+model_args:
+  patch_length: 12
+  stride: 6
+  mask_type: random
+  random_mask_ratio: 0.4
+  use_cls_token: true
+  d_model: 64
+
+training_args:
+  batch_size: 64
+  eval_batch_size: 64
+  lr: 0.0001
+  save_every_n: 100

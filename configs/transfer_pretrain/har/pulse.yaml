@@ -1,0 +1,28 @@
+# PULSE transfer source pretraining on HAR
+base_config: configs/base/pulse_base.yaml
+
+seed: 0
+
+data_args:
+  path: data/har/processed
+  mode: fullts
+  train_stride: 128
+  val_stride: 128
+
+eval_args:
+  do_eval: false
+
+training_args:
+  epochs: 50
+  lr: 0.0001
+  batch_size: 128
+  eval_batch_size: 128
+
+model_args:
+  recon_args:
+    hidden_dim: 128
+  init_args:
+    in_proj_dilation: 2
+    hidden_dim: 128
+  augmentation_args:
+    n_init_samples: 1

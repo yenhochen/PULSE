@@ -1,0 +1,21 @@
+base_config: configs/base/patchtst_base.yaml
+
+data_args:
+  path: null
+  analysis_args:
+    n_classes: 5
+  mode: subseq
+  input_dims: 3
+  subseq_size: 100
+  train_stride: 100
+  val_stride: 100
+
+model_args:
+  patch_length: 10
+  stride: 5
+  d_model: 128
+
+training_args:
+  batch_size: 128
+  eval_batch_size: 128
+  lr: 0.001

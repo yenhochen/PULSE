@@ -1,0 +1,40 @@
+base_config: configs/base/base.yaml
+model_type: dsvae
+
+data_args:
+  path: null
+  analysis_args:
+    n_classes: 5
+  mode: subseq
+  input_dims: 3
+  subseq_size: 100
+  train_stride: 100
+  val_stride: 100
+
+model_args:
+  z_dim: 64
+  v_dim: 64
+  activation: 'tanh'
+  dense_x: []
+  dim_RNN_gv: 320
+  num_RNN_gv: 4
+  dense_gv_v: []
+  dense_xv_gxv: []
+  dim_RNN_gxv: 64
+  num_RNN_gxv: 1
+  dense_gxv_gz: []
+  dim_RNN_gz: 64
+  dim_RNN_prior: 16
+  num_RNN_prior: 1
+  num_RNN_gz: 1
+  dense_vz_x: [64,64]
+  dropout_p: 0.
+  beta: 1
+  kl_weight: 1e-4
+
+training_args:
+  epochs: 100
+  batch_size: 128
+  eval_batch_size: 128
+  lr: 0.001
+  save_every_n: 100

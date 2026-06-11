@@ -1,0 +1,6 @@
+base_config: configs/analysis-w-100/pulse-base.yaml
+model_name: pulse-no-aug
+
+model_args:
+  augmentation_args:
+    n_init_samples: 0

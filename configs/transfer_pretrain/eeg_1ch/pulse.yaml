@@ -1,0 +1,36 @@
+# PULSE transfer source pretraining on Sleep EEG (1 channel, healthy subjects)
+base_config: configs/base/pulse_base.yaml
+
+data_args:
+  path: data/sleep_eeg/processed/healthy
+  mode: fullts
+  input_dims: 1
+  subseq_size: 200
+  train_stride: 200
+  val_stride: 200
+  include_channels: [0]
+  p_train: 0.1
+  p_val: 0.1
+
+eval_args:
+  do_eval: false
+
+model_args:
+  time_vary_args:
+    pool_denom: 20
+  recon_args:
+    hidden_dim: 128
+  init_args:
+    in_proj_kernel_size: 5
+    in_proj_dilation: 1
+    hidden_dim: 128
+  augmentation_args:
+    n_init_samples: 1
+    sample_right_boundary: 100
+
+training_args:
+  epochs: 50
+  batch_size: 64
+  eval_batch_size: 64
+  lr: 0.0001
+  save_every_n: 100

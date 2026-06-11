@@ -1,0 +1,6 @@
+base_config: configs/analysis-w-100/pulse_oracle-base.yaml
+model_name: pulse_oracle_shared-f-init-sample
+
+model_args:
+  shared_f_init: true
+  sample_init: true

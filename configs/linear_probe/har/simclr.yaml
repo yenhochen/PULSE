@@ -1,0 +1,20 @@
+base_config: configs/base/base.yaml
+model_type: simclr
+
+data_args:
+  path: data/har/processed
+  mode: fullts
+  input_dims: 6
+  subseq_size: 128
+  train_stride: 128
+  val_stride: 128
+
+model_args:
+  tau: 1
+
+training_args:
+  epochs: 100
+  batch_size: 64
+  eval_batch_size: 64
+  lr: 0.001
+  save_every_n: 100
