@@ -1,6 +1,7 @@
 data/*
 !data/process
 experiments/*
+!experiments/.gitkeep
 archive/
 scripts/generated/
 test_scripts/*.sh
