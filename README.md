@@ -1,6 +1,8 @@
 # PULSE
 
-Self-supervised learning for physiological timeseries aims to capture the identity of the underlying dynamical process while filtering irrelevant noise. However, existing approaches may obscure the clinical semantics important for downstream transferability. Weakly constrained pretext tasks (i.e. contrastive learning, MAE) may incorrectly ignore the underlying dynamical structure, while structurally constrained models (i.e. SVAEs) are unable to selectively filter sample-specific noise. To bridge this gap, we propose PULSE, a novel pretraining objective that simultaneously preserves dynamical relationships important to physiological time-series while selectively removing irrelevant noise. We achieve this by formulating a dynamical systems model to identify transferable and non-transferable information between time-series windows, and target the former through a novel cross-reconstruction objective. We establish theory that provides conditions for when transferrable information is recovered, and empirically validate it through synthetic experiments. On several real-world datasets, PULSE effectively distinguishes clinical semantic classes, increases label efficiency, and improves transfer learning performance.
+Authors: Yenho Chen, Maxwell A. Xu, James M. Rehg, Christopher J. Rozell
+
+Code for PULSE (ICML 2026), a self-supervised pretraining method for physiological time-series based on preserving dynamical systems structure while filtering irrelevant noise. This is accomplished through a cross-reconstruction objective that estimates dynamics given a time series, then uses those dynamics to reconstruct a different randomly sampled time-series from the same system. In doing so, we separate transferable from non-transferable information in time-series data, improving label efficiency and transfer learning performance across a wide range of real-world datasets.
 
 Paper: [arxiv.org/pdf/2512.00239](https://arxiv.org/pdf/2512.00239)
 
