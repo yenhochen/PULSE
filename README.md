@@ -8,7 +8,7 @@ Paper: [arxiv.org/pdf/2512.00239](https://arxiv.org/pdf/2512.00239)
 
 ## Setup
 
-Run commands from the repo root with `PYTHONPATH` set. Evaluation uses [cuML](https://docs.rapids.ai/) (RAPIDS 25.8 in `environment.yaml`).
+We use [cuML](https://docs.rapids.ai/) (RAPIDS 25.8) for faster evaluation. All commands should be run from the repo root.
 
 ```bash
 git clone https://github.com/yenhochen/PULSE.git
@@ -22,7 +22,7 @@ export PYTHONPATH=$(pwd)
 
 ## Data
 
-Scripts live in `data/process/`. Processed data is not bundled with the repo.
+For reproducibility, we include scripts to download and process the datasets in `data/process/`.
 
 ```bash
 # HAR (other datasets: data/process/{ecg,ppg,sleepeeg,...}_processdata.py)
@@ -36,7 +36,7 @@ sh data/process/analysis/build.sh
 
 ## Quick start (linear probe)
 
-Pretrain PULSE on HAR and run downstream linear-probe eval (`configs/linear_probe/`):
+Example command to pretraing PULSE on HAR and run downstream for the linear-probe eval. Model configurations are located at `configs/linear_probe/`:
 
 ```bash
 python scripts/run/pretrain.py -c configs/linear_probe/har/pulse.yaml -s 0 \
@@ -45,14 +45,16 @@ python scripts/run/pretrain.py -c configs/linear_probe/har/pulse.yaml -s 0 \
 
 ## Transfer learning
 
-Transfer targets ([TFC-pretraining](https://github.com/mims-harvard/TFC-pretraining) on Figshare). Article zip URLs return empty files; use:
+Transfer learning datasets are directly from ([TFC-pretraining](https://github.com/mims-harvard/TFC-pretraining) on Figshare). We also include the following scripts to download them here.
 
 ```bash
 python -m data.process.download_transfer_data
 # → data/epilepsy/processed/ and data/gesture/processed/
 ```
 
-Sources: [Epilepsy](https://figshare.com/articles/19930199), [Gesture](https://figshare.com/articles/19930247).
+Sources: [Epilepsy](https://figshare.com/ndownloader/articles/19930199/versions/2), [Gesture](https://figshare.com/ndownloader/articles/19930247/versions/1).
+
+Here are example commands for transfer learning experiments from pretraining on HAR and fine-tuning on Gesture.
 
 ```bash
 # Pretrain on source domain (HAR)
@@ -60,8 +62,8 @@ Sources: [Epilepsy](https://figshare.com/articles/19930199), [Gesture](https://f
 python scripts/run/pretrain.py -c configs/transfer_pretrain/har/pulse.yaml -s 0 \
   -sd experiments/transfer/har/pulse/seed_0
 
-# Fine-tune on target domain (Epilepsy)
-python scripts/run/transfer.py -c configs/transfer/epilepsy.yaml \
+# Fine-tune on target domain (Gesture)
+python scripts/run/transfer.py -c configs/transfer/gesture.yaml \
   -p experiments/transfer/har/pulse/seed_0/checkpoint_best -s 0
 ```
 
